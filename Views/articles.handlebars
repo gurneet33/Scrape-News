@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row text-center">
         <div class="col-xs-12">
-            <h3>"{{data.title}}" Notes</h3>
+            <h3>{{data.title}}</h3>
         </div>
     </div>
 </div>
@@ -12,10 +12,14 @@
             <textarea class="form-control" id="comment-text" rows="3"></textarea>
         </div>
         <br />
-        <button id={{this._id}} class="submit-comments" style="padding: 5px 10px; float:right">Submit</button>
+        <button type="button" data-id={{data._id}} class="submit-comments"
+            style="padding: 5px 10px; float:right">Submit</button>
     </form>
 </div>
 <div>
-    <h4 id="title-input"><strong>{{this.title}}</strong></h4>
-    <p id="comment-body"></p>
+    {{#if data.note}}
+    {{#each data.note}}
+    <p>{{this.body}}</p>
+    {{/each}}
+    {{/if}}
 </div>

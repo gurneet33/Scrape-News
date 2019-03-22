@@ -37,27 +37,37 @@ $(document).on("click", ".add-comments", function () {
     $("#comment-text").empty();
     // Save the id from the p tag
     var thisId = $(this).attr("id");
-    console.log(thisId
-    )
+    console.log(thisId)
     // Now make an ajax call for the Article
     $.ajax({
         method: "GET",
         url: "/articles/" + thisId
     })
-        // With that done, add the note information to the page
-        .then(function (data) {
-            console.log(data);
-            alert("trying to comment eh!")
-            // The title of the article
+    // With that done, add the note information to the page
+    window.location.replace("/articles/" + thisId)
+});
 
-            // If there's a note in the article
-            if (data.notes) {
-                // Place the title of the note in the title input
-                $("#title-input").val(data.notes.title);
-                // Place the body of the note in the body textarea
-                $("#comment-body").val(data.notes.body);
-            }
+$(".submit-comments").on("click", function () {
+    var thisId = $(this).attr("data-id");
+    alert("submit hit")
+    $.ajax({
+        method: "POST",
+        url: "/articles/" + thisId,
+        data: {
+            // Value taken from title input
+            // title: $("#title-input").val(),
+            // Value taken from note textarea
+            body: $("#comment-text").val()
+        }
+    })
+        .then(function (data) {
+            // Log the response
+            console.log(data);
+            window.location.replace("/articles/" + data._id);
         });
+    // Also, remove the values entered in the input and textarea for note entry
+    // $("#title-input").val("");
+    $("#comment-text").val("");
 });
 
 
