@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="row text-center">
+        <div class="col-xs-12">
+            <h3>"{{data.title}}" Notes</h3>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <form>
+        <div class="form-group">
+            <label for="comment-text">Add Comment Here</label>
+            <textarea class="form-control" id="comment-text" rows="3"></textarea>
+        </div>
+        <br />
+        <button id={{this._id}} class="submit-comments" style="padding: 5px 10px; float:right">Submit</button>
+    </form>
+</div>
+<div>
+    <h4 id="title-input"><strong>{{this.title}}</strong></h4>
+    <p id="comment-body"></p>
+</div>
